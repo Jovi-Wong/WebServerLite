@@ -1,12 +1,21 @@
 CC = g++
 FLAGS = -std=c++14 -O3 -Wall -I ./src/include
-TARGET = server
-OBJS = src/*.cpp
+OBJS = src/buffer.cpp src/epoller.cpp src/heaptimer.cpp \
+	   src/httpconn.cpp src/httprequest.cpp src/httpresponse.cpp \
+	   src/log.cpp src/sqlconnpool.cpp src/webserver.cpp
+MAIN = src/main.cpp
+TEST = test/test.cpp
 LIBS = -pthread -lmysqlclient
-TRASH = $(TARGET) log
+TRASH = server server_test log
 
-all: $(OBJS)
-	$(CC) -o $(TARGET) $(FLAGS) $(OBJS) $(LIBS)
+all: $(OBJS) $(MAIN)
+	$(CC) -o server $(FLAGS) $(OBJS) $(MAIN) $(LIBS)
+
+test: $(OBJS) $(TEST)
+	$(CC) -o server_test $(FLAGS) $(OBJS) $(TEST) $(LIBS)
+
+debug: $(OBJS) $(MAIN)
+	$(CC) -o server $(FLAGS) -g $(OBJS) $(MAIN) $(LIBS)
 
 .PHONY: clean
 clean:

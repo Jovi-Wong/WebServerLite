@@ -32,10 +32,10 @@ bin
 *.out
 *.app
 server
-
+server_
 # Editor
 .vscode
 .clang
 
 # Logs
-log
+*log*
