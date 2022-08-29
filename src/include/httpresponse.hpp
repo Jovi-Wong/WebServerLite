@@ -7,8 +7,8 @@
 #include <sys/stat.h>    // stat
 #include <sys/mman.h>    // mmap, munmap
 
-#include "../buffer/buffer.hpp"
-#include "../log/log.hpp"
+#include "buffer.hpp"
+#include "log.hpp"
 
 class HttpResponse {
 public:
