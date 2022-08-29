@@ -6,7 +6,7 @@ OBJS = src/buffer.cpp src/epoller.cpp src/heaptimer.cpp \
 MAIN = src/main.cpp
 TEST = test/test.cpp
 LIBS = -pthread -lmysqlclient
-TRASH = server server_test log
+TRASH = server server_test log testlog* testThreadpool
 
 all: $(OBJS) $(MAIN)
 	$(CC) -o server $(FLAGS) $(OBJS) $(MAIN) $(LIBS)
