@@ -35,3 +35,6 @@ bin
 # Editor
 .vscode
 .clang
+
+# Logs
+log
