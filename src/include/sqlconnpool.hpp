@@ -1,5 +1,5 @@
-#ifndef SQLCONNPOOL_H
-#define SQLCONNPOOL_H
+#ifndef SQLCONNPOOL
+#define SQLCONNPOOL
 
 #include <mysql/mysql.h>
 #include <string>
