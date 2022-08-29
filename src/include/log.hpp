@@ -1,5 +1,5 @@
-#ifndef LOG_H
-#define LOG_H
+#ifndef LOG
+#define LOG
 
 #include <mutex>
 #include <string>
@@ -73,4 +73,4 @@ private:
 #define LOG_WARN(format, ...) do {LOG_BASE(2, format, ##__VA_ARGS__)} while(0);
 #define LOG_ERROR(format, ...) do {LOG_BASE(3, format, ##__VA_ARGS__)} while(0);
 
-#endif //LOG_H
+#endif //LOG
