@@ -3,7 +3,7 @@
 #include <features.h>
 
 #if __GLIBC__ == 2 && __GLIBC_MINOR__ < 30
-#include <sys/sy scall.h>
+#include <sys/syscall.h>
 #define gettid() syscall(SYS_gettid)
 #endif
 
