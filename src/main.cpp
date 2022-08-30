@@ -12,8 +12,8 @@ int main() {
         false,       // OptLinger
         3306,        // sqlPort
         "root",      // sqlUser
-        "root",      // sqlPwd
-        "webserver", // dbName
+        "1234",      // sqlPwd
+        "WebServerLite", // dbName
         12,          // connPoolNum
         6,           // threadNum
         true,        // openLog
