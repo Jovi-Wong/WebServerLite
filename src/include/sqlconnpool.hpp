@@ -5,10 +5,13 @@
 #include <string>
 #include <queue>
 #include <mutex>
-#include <semaphore.h>
+#include <semaphore.h> // sem_t
 #include <thread>
 #include "log.hpp"
 
+/*
+A singleton class to handle all connections to database.
+*/
 class SqlConnPool {
 public:
     static SqlConnPool *Instance();

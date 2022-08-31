@@ -17,8 +17,9 @@ void SqlConnPool::Init(const char* host, int port,
     assert(connSize > 0);
     for (int i = 0; i < connSize; i++) {
         MYSQL *sql = nullptr;
-        sql = mysql_init(sql);
+        sql = mysql_init(sql); // because sql = nullptr, the function allocates, initializes, and returns a new object
         if (!sql) {
+            /* fail to initialize a sql object*/
             LOG_ERROR("MySql init error!");
             assert(sql);
         }
@@ -32,6 +33,7 @@ void SqlConnPool::Init(const char* host, int port,
     }
     MAX_CONN_ = connSize;
     sem_init(&semId_, 0, MAX_CONN_);
+    std::cerr << "finish SqlConnPool::init" << std::endl;
 }
 
 MYSQL* SqlConnPool::GetConn() {
