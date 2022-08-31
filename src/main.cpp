@@ -1,11 +1,11 @@
 #include <unistd.h>
-#include "webserver.hpp"
+#include "webserverlite.hpp"
 
 int main() {
     /* 守护进程 后台运行 */
     //daemon(1, 0); 
 
-    WebServer server(
+    WebServerLite server(
         1316,        // port
         3,           // trigMode
         60000,       // timeoutMS

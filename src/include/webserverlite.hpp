@@ -1,5 +1,5 @@
-#ifndef WEBSERVER
-#define WEBSERVER
+#ifndef WEBSERVERLITE
+#define WEBSERVERLITE
 
 #include <unordered_map>
 #include <fcntl.h>       // fcntl()
@@ -15,9 +15,10 @@
 #include "threadpool.hpp"
 #include "httpconn.hpp"
 
-class WebServer {
+class WebServerLite {
 public:
-    WebServer(
+
+    WebServerLite(
         int port,
         int trigMode,
         int timeoutMS,
@@ -33,7 +34,7 @@ public:
         int logQueSize
     );
 
-    ~WebServer();
+    ~WebServerLite();
     void Start();
 
 private:
@@ -59,7 +60,7 @@ private:
 
     int port_;
     bool openLinger_;
-    int timeoutMS_;  /* 毫秒MS */
+    int timeoutMS_;  /* unit is millisecond */
     bool isClose_;
     int listenFd_;
     char* srcDir_;
@@ -73,4 +74,4 @@ private:
     std::unordered_map<int, HttpConn> users_;
 };
 
-#endif //WEBSERVER
+#endif //WebServerLite

@@ -1,4 +1,6 @@
 # WebServerLite
+
+# Introduction
 WebServerLite is a high-performance HTTP web server in C++14. Many functionalities are integrated into it including 
 * resolving HTTP messages to support GET and POST primitives by state machine
 * supporting concurrent requests by non-blocking socket and multiplexing I/O

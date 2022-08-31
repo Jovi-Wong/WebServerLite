@@ -2,7 +2,7 @@ CC = g++
 FLAGS = -std=c++14 -O3 -Wall -I ./src/include
 OBJS = src/buffer.cpp src/epoller.cpp src/heaptimer.cpp \
 	   src/httpconn.cpp src/httprequest.cpp src/httpresponse.cpp \
-	   src/log.cpp src/sqlconnpool.cpp src/webserver.cpp
+	   src/log.cpp src/sqlconnpool.cpp src/webserverlite.cpp
 MAIN = src/main.cpp
 TEST = test/test.cpp
 LIBS = -pthread -lmysqlclient
