@@ -12,7 +12,8 @@ Log::Log() {
 }
 
 Log::~Log() {
-    if(writeThread_ && writeThread_->joinable()) {
+    if(writeThread_ && writeThread_->joinable()) 
+    {
         while(!deque_->empty()) {
             deque_->flush();
         };
@@ -36,20 +37,26 @@ void Log::SetLevel(int level) {
     level_ = level;
 }
 
-void Log::init(int level = 1, const char* path, const char* suffix,
-    int maxQueueSize) {
+void Log::init(int level = 1,
+               const char* path,
+               const char* suffix,
+               int maxQueueSize)
+{
     isOpen_ = true;
     level_ = level;
-    if(maxQueueSize > 0) {
+    if(maxQueueSize > 0)
+    {
         isAsync_ = true;
-        if(!deque_) {
+        if(!deque_)
+        {
             unique_ptr<BlockDeque<std::string>> newDeque(new BlockDeque<std::string>);
-            deque_ = move(newDeque);
-            
+            deque_ = move(newDeque);    
             std::unique_ptr<std::thread> NewThread(new thread(FlushLogThread));
             writeThread_ = move(NewThread);
         }
-    } else {
+    } 
+    else 
+    {
         isAsync_ = false;
     }
 
@@ -61,8 +68,14 @@ void Log::init(int level = 1, const char* path, const char* suffix,
     path_ = path;
     suffix_ = suffix;
     char fileName[LOG_NAME_LEN] = {0};
-    snprintf(fileName, LOG_NAME_LEN - 1, "%s/%04d_%02d_%02d%s", 
-            path_, t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, suffix_);
+    snprintf(fileName, 
+             LOG_NAME_LEN - 1, 
+             "%s/%04d_%02d_%02d%s", 
+             path_,
+             t.tm_year + 1900,
+             t.tm_mon + 1,
+             t.tm_mday,
+             suffix_);
     toDay_ = t.tm_mday;
 
     {
