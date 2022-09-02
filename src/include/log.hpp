@@ -14,9 +14,10 @@
 
 class Log {
 public:
-    void init(int level, const char* path = "./log", 
-                const char* suffix =".log",
-                int maxQueueCapacity = 1024);
+    void init(int level,
+              const char* path = "./log", 
+              const char* suffix =".log",
+              int maxQueueCapacity = 1024);
 
     static Log* Instance();
     static void FlushLogThread();
@@ -62,10 +63,11 @@ private:
 #define LOG_BASE(level, format, ...) \
     do {\
         Log* log = Log::Instance();\
-        if (log->IsOpen() && log->GetLevel() <= level) {\
-            log->write(level, format, ##__VA_ARGS__); \
-            log->flush();\
-        }\
+        if (log->IsOpen() && log->GetLevel() <= level) 
+        {
+            log->write(level, format, ##__VA_ARGS__);
+            log->flush();
+        }
     } while(0);
 
 #define LOG_DEBUG(format, ...) do {LOG_BASE(0, format, ##__VA_ARGS__)} while(0);

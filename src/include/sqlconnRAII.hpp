@@ -1,5 +1,5 @@
-#ifndef SQLCONNRAII_H
-#define SQLCONNRAII_H
+#ifndef SQLCONNRAII
+#define SQLCONNRAII
 #include "sqlconnpool.hpp"
 
 /* 资源在对象构造初始化 资源在对象析构时释放*/
@@ -21,4 +21,4 @@ private:
     SqlConnPool* connpool_;
 };
 
-#endif //SQLCONNRAII_H
+#endif //SQLCONNRAII
