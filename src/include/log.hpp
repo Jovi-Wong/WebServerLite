@@ -63,11 +63,11 @@ private:
 #define LOG_BASE(level, format, ...) \
     do {\
         Log* log = Log::Instance();\
-        if (log->IsOpen() && log->GetLevel() <= level) 
-        {
-            log->write(level, format, ##__VA_ARGS__);
-            log->flush();
-        }
+        if (log->IsOpen() && log->GetLevel() <= level) \
+        {\
+            log->write(level, format, ##__VA_ARGS__); \
+            log->flush();\
+        }\
     } while(0);
 
 #define LOG_DEBUG(format, ...) do {LOG_BASE(0, format, ##__VA_ARGS__)} while(0);

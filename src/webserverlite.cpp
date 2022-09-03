@@ -69,14 +69,22 @@ void WebServerLite::InitEventMode_(int trigMode) {
 }
 
 void WebServerLite::Start() {
+    std::cout << "enter WebServerLite::Start()" << std::endl;
     int timeMS = -1;  /* epoll wait timeout == -1 无事件将阻塞 */
-    if(!isClose_) { LOG_INFO("========== Server start =========="); }
-    while(!isClose_) {
-        if(timeoutMS_ > 0) {
+    if(!isClose_) 
+    { 
+        std::cout << "server start" << std::endl;
+        LOG_INFO("========== Server start ==========");
+    }
+    
+    while(!isClose_)
+    {        if(timeoutMS_ > 0)
+        {
             timeMS = timer_->GetNextTick();
         }
         int eventCnt = epoller_->Wait(timeMS);
-        for(int i = 0; i < eventCnt; i++) {
+        for(int i = 0; i < eventCnt; i++)
+        {
             /* 处理事件 */
             int fd = epoller_->GetEventFd(i);
             uint32_t events = epoller_->GetEvents(i);
