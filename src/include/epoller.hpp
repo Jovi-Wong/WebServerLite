@@ -8,6 +8,10 @@
 #include <vector>
 #include <errno.h>
 
+/**
+ * @brief wrap epoll API up
+ */
+
 class Epoller {
 public:
     explicit Epoller(int maxEvent = 1024);
