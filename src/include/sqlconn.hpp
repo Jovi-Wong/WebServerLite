@@ -1,18 +1,18 @@
-#ifndef SQLCONNRAII
-#define SQLCONNRAII
+#ifndef SQLCONN
+#define SQLCONN
 #include "sqlconnpool.hpp"
 
 /* 资源在对象构造初始化 资源在对象析构时释放*/
-class SqlConnRAII {
+class SqlConn {
 public:
-    SqlConnRAII(MYSQL** sql, SqlConnPool *connpool) {
+    SqlConn(MYSQL** sql, SqlConnPool *connpool) {
         assert(connpool);
         *sql = connpool->GetConn();
         sql_ = *sql;
         connpool_ = connpool;
     }
     
-    ~SqlConnRAII() {
+    ~SqlConn() {
         if(sql_) { connpool_->FreeConn(sql_); }
     }
     
@@ -21,4 +21,4 @@ private:
     SqlConnPool* connpool_;
 };
 
-#endif //SQLCONNRAII
+#endif //SQLCONN

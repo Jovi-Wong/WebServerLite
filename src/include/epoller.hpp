@@ -14,9 +14,9 @@ public:
 
     ~Epoller();
 
-    bool AddFd(int fd, uint32_t events);
+    bool AddFd(int fd, unsigned int events);
 
-    bool ModFd(int fd, uint32_t events);
+    bool ModFd(int fd, unsigned int events);
 
     bool DelFd(int fd);
 
@@ -24,7 +24,7 @@ public:
 
     int GetEventFd(size_t i) const;
 
-    uint32_t GetEvents(size_t i) const;
+    unsigned int GetEvents(size_t i) const;
         
 private:
     int epollFd_;

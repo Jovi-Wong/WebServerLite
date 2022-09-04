@@ -10,7 +10,7 @@ Epoller::~Epoller()
     close(epollFd_);
 }
 
-bool Epoller::AddFd(int fd, uint32_t events)
+bool Epoller::AddFd(int fd, unsigned int events)
 {
     if(fd < 0) return false;
     epoll_event ev = {0};
@@ -19,7 +19,7 @@ bool Epoller::AddFd(int fd, uint32_t events)
     return 0 == epoll_ctl(epollFd_, EPOLL_CTL_ADD, fd, &ev);
 }
 
-bool Epoller::ModFd(int fd, uint32_t events) 
+bool Epoller::ModFd(int fd, unsigned int events) 
 {
     if(fd < 0) return false;
     epoll_event ev = {0};
@@ -46,7 +46,7 @@ int Epoller::GetEventFd(size_t i) const
     return events_[i].data.fd;
 }
 
-uint32_t Epoller::GetEvents(size_t i) const
+unsigned int Epoller::GetEvents(size_t i) const
 {
     assert(i < events_.size() && i >= 0);
     return events_[i].events;

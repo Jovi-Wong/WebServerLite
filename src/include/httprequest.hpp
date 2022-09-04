@@ -11,7 +11,7 @@
 #include "buffer.hpp"
 #include "log.hpp"
 #include "sqlconnpool.hpp"
-#include "sqlconnRAII.hpp"
+#include "sqlconn.hpp"
 
 class HttpRequest {
 public:

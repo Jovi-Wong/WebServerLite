@@ -33,7 +33,6 @@ void SqlConnPool::Init(const char* host, int port,
     }
     MAX_CONN_ = connSize;
     sem_init(&semId_, 0, MAX_CONN_);
-    std::cerr << "finish SqlConnPool::init" << std::endl;
 }
 
 MYSQL* SqlConnPool::GetConn() {

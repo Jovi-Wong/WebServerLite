@@ -65,8 +65,8 @@ private:
     int listenFd_;
     char* srcDir_;
     
-    uint32_t listenEvent_;
-    uint32_t connEvent_;
+    unsigned int listenEvent_;
+    unsigned int connEvent_;
    
     std::unique_ptr<HeapTimer> timer_;
     std::unique_ptr<ThreadPool> threadpool_;
