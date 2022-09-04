@@ -111,7 +111,6 @@ void WebServerLite::Start()
             unsigned int events = epoller_->GetEvents(i);
             if(fd == listenFd_)
             {
-                std::cout << "enter function DealListen_" << std::endl;
                 DealListen_();
             }
             else if(events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) 
