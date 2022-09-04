@@ -75,7 +75,7 @@ private:
 
     static const std::unordered_set<std::string> DEFAULT_HTML;
     static const std::unordered_map<std::string, int> DEFAULT_HTML_TAG;
-    static int ConverHex(char ch);
+    static int ConvertHex(char ch);
 };
 
 #endif //HTTPREQUEST

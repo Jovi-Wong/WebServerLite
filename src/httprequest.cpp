@@ -60,7 +60,10 @@ bool HttpRequest::parse(Buffer& buff)
 
 void HttpRequest::ParsePath_()
 {
-    if(path_ == "/") path_ = "/index.html";
+    if(path_ == "/") 
+    {
+        path_ = "/index.html";
+    }
     else
     {
         for(auto &item: DEFAULT_HTML)
@@ -108,7 +111,7 @@ void HttpRequest::ParseBody_(const string& line)
     LOG_DEBUG("Body:%s, len:%d", line.c_str(), line.size());
 }
 
-int HttpRequest::ConverHex(char ch)
+int HttpRequest::ConvertHex(char ch)
 {
     if(ch >= 'A' && ch <= 'F') return ch -'A' + 10;
     if(ch >= 'a' && ch <= 'f') return ch -'a' + 10;
@@ -158,7 +161,7 @@ void HttpRequest::ParseFromUrlencoded_()
                 body_[i] = ' ';
                 break;
             case '%':
-                num = ConverHex(body_[i + 1]) * 16 + ConverHex(body_[i + 2]);
+                num = ConvertHex(body_[i + 1]) * 16 + ConvertHex(body_[i + 2]);
                 body_[i + 2] = num % 10 + '0';
                 body_[i + 1] = num / 10 + '0';
                 i += 2;
