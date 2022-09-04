@@ -1,5 +1,5 @@
-#ifndef HTTP_CONN_H
-#define HTTP_CONN_H
+#ifndef HTTPCONN
+#define HTTPCONN
 
 #include <sys/types.h>
 #include <sys/uio.h>     // readv/writev
@@ -13,7 +13,8 @@
 #include "httprequest.hpp"
 #include "httpresponse.hpp"
 
-class HttpConn {
+class HttpConn
+{
 public:
     HttpConn();
 
@@ -37,11 +38,13 @@ public:
     
     bool process();
 
-    int ToWriteBytes() { 
+    int ToWriteBytes()
+    { 
         return iov_[0].iov_len + iov_[1].iov_len; 
     }
 
-    bool IsKeepAlive() const {
+    bool IsKeepAlive() const
+    {
         return request_.IsKeepAlive();
     }
 
@@ -67,4 +70,4 @@ private:
 };
 
 
-#endif //HTTP_CONN_H
+#endif //HTTPCONN

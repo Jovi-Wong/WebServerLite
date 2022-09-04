@@ -7,7 +7,8 @@
 #include <sys/time.h>
 
 template<class T>
-class BlockDeque {
+class BlockDeque
+{
 public:
     explicit BlockDeque(size_t MaxCapacity = 1000);
 
@@ -54,19 +55,19 @@ private:
 };
 
 
-template<class T>
-BlockDeque<T>::BlockDeque(size_t MaxCapacity) :capacity_(MaxCapacity) {
+template<class T> BlockDeque<T>::BlockDeque(size_t MaxCapacity) :capacity_(MaxCapacity)
+{
     assert(MaxCapacity > 0);
     isClose_ = false;
 }
 
-template<class T>
-BlockDeque<T>::~BlockDeque() {
+template<class T> BlockDeque<T>::~BlockDeque()
+{
     Close();
 };
 
-template<class T>
-void BlockDeque<T>::Close() {
+template<class T> void BlockDeque<T>::Close()
+{
     {   
         std::lock_guard<std::mutex> locker(mtx_);
         deq_.clear();
@@ -76,37 +77,37 @@ void BlockDeque<T>::Close() {
     condConsumer_.notify_all();
 };
 
-template<class T>
-void BlockDeque<T>::flush() {
+template<class T> void BlockDeque<T>::flush()
+{
     condConsumer_.notify_one();
 };
 
-template<class T>
-void BlockDeque<T>::clear() {
+template<class T> void BlockDeque<T>::clear()
+{
     std::lock_guard<std::mutex> locker(mtx_);
     deq_.clear();
 }
 
-template<class T>
-T BlockDeque<T>::front() {
+template<class T> T BlockDeque<T>::front()
+{
     std::lock_guard<std::mutex> locker(mtx_);
     return deq_.front();
 }
 
-template<class T>
-T BlockDeque<T>::back() {
+template<class T> T BlockDeque<T>::back()
+{
     std::lock_guard<std::mutex> locker(mtx_);
     return deq_.back();
 }
 
-template<class T>
-size_t BlockDeque<T>::size() {
+template<class T> size_t BlockDeque<T>::size()
+{
     std::lock_guard<std::mutex> locker(mtx_);
     return deq_.size();
 }
 
-template<class T>
-size_t BlockDeque<T>::capacity() {
+template<class T> size_t BlockDeque<T>::capacity()
+{
     std::lock_guard<std::mutex> locker(mtx_);
     return capacity_;
 }

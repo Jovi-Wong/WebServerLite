@@ -1,5 +1,5 @@
-#ifndef HEAP_TIMER
-#define HEAP_TIMER
+#ifndef HEAPTIMER
+#define HEAPTIMER
 
 #include <queue>
 #include <unordered_map>
@@ -16,16 +16,19 @@ typedef std::chrono::high_resolution_clock Clock;
 typedef std::chrono::milliseconds MS;
 typedef Clock::time_point TimeStamp;
 
-struct TimerNode {
+struct TimerNode
+{
     int id;
     TimeStamp expires;
     TimeoutCallBack cb;
-    bool operator<(const TimerNode& t) {
+    bool operator<(const TimerNode& t)
+    {
         return expires < t.expires;
     }
 };
 
-class HeapTimer {
+class HeapTimer
+{
 public:
     HeapTimer() { heap_.reserve(64); }
 
@@ -59,4 +62,4 @@ private:
     std::unordered_map<int, size_t> ref_;
 };
 
-#endif //HEAP_TIMER
+#endif //HEAPTIMER

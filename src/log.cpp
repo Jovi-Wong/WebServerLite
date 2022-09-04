@@ -2,7 +2,8 @@
 
 using namespace std;
 
-Log::Log() {
+Log::Log()
+{
     lineCount_ = 0;
     isAsync_ = false;
     writeThread_ = nullptr;
@@ -11,28 +12,33 @@ Log::Log() {
     fp_ = nullptr;
 }
 
-Log::~Log() {
+Log::~Log()
+{
     if(writeThread_ && writeThread_->joinable()) 
     {
-        while(!deque_->empty()) {
+        while(!deque_->empty())
+        {
             deque_->flush();
         };
         deque_->Close();
         writeThread_->join();
     }
-    if(fp_) {
+    if(fp_)
+    {
         lock_guard<mutex> locker(mtx_);
         flush();
         fclose(fp_);
     }
 }
 
-int Log::GetLevel() {
+int Log::GetLevel()
+{
     lock_guard<mutex> locker(mtx_);
     return level_;
 }
 
-void Log::SetLevel(int level) {
+void Log::SetLevel(int level)
+{
     lock_guard<mutex> locker(mtx_);
     level_ = level;
 }
@@ -95,7 +101,8 @@ void Log::init(int level = 1,
     }
 }
 
-void Log::write(int level, const char *format, ...) {
+void Log::write(int level, const char *format, ...)
+{
     struct timeval now = {0, 0};
     gettimeofday(&now, nullptr);
     time_t tSec = now.tv_sec;
@@ -156,46 +163,51 @@ void Log::write(int level, const char *format, ...) {
     }
 }
 
-void Log::AppendLogLevelTitle_(int level) {
-    switch(level) {
-    case 0:
-        buff_.Append("[debug]: ", 9);
-        break;
-    case 1:
-        buff_.Append("[info] : ", 9);
-        break;
-    case 2:
-        buff_.Append("[warn] : ", 9);
-        break;
-    case 3:
-        buff_.Append("[error]: ", 9);
-        break;
-    default:
-        buff_.Append("[info] : ", 9);
-        break;
+void Log::AppendLogLevelTitle_(int level)
+{
+    switch(level)
+    {
+        case 0:
+            buff_.Append("[debug]: ", 9);
+            break;
+        case 1:
+            buff_.Append("[info] : ", 9);
+            break;
+        case 2:
+            buff_.Append("[warn] : ", 9);
+            break;
+        case 3:
+            buff_.Append("[error]: ", 9);
+            break;
+        default:
+            buff_.Append("[info] : ", 9);
+            break;
     }
 }
 
-void Log::flush() {
-    if(isAsync_) { 
-        deque_->flush(); 
-    }
+void Log::flush()
+{
+    if(isAsync_) deque_->flush(); 
     fflush(fp_);
 }
 
-void Log::AsyncWrite_() {
+void Log::AsyncWrite_()
+{
     string str = "";
-    while(deque_->pop(str)) {
+    while(deque_->pop(str))
+    {
         lock_guard<mutex> locker(mtx_);
         fputs(str.c_str(), fp_);
     }
 }
 
-Log* Log::Instance() {
+Log* Log::Instance()
+{
     static Log inst;
     return &inst;
 }
 
-void Log::FlushLogThread() {
+void Log::FlushLogThread()
+{
     Log::Instance()->AsyncWrite_();
 }

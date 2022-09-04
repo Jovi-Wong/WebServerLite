@@ -12,7 +12,8 @@
 #include "blockqueue.hpp"
 #include "buffer.hpp"
 
-class Log {
+class Log
+{
 public:
     void init(int level,
               const char* path = "./log", 

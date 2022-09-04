@@ -12,7 +12,8 @@
 /*
 A singleton class to handle all connections to database.
 */
-class SqlConnPool {
+class SqlConnPool
+{
 public:
     static SqlConnPool *Instance();
 

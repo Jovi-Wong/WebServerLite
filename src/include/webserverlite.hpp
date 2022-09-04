@@ -15,9 +15,9 @@
 #include "threadpool.hpp"
 #include "httpconn.hpp"
 
-class WebServerLite {
+class WebServerLite 
+{
 public:
-
     WebServerLite(
         int port,
         int trigMode,
@@ -74,4 +74,4 @@ private:
     std::unordered_map<int, HttpConn> users_;
 };
 
-#endif //WebServerLite
+#endif //WEBSERVERLITE

@@ -39,8 +39,7 @@ void SqlConnPool::Init(const char* host,
                                  port,
                                  nullptr,
                                  0);
-        if (!sql)
-            LOG_ERROR("MySql Connect error!");
+        if (!sql) LOG_ERROR("MySql Connect error!");
         connQue_.push(sql);
     }
     MAX_CONN_ = connSize;

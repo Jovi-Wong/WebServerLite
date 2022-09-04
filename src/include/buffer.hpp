@@ -1,5 +1,5 @@
-#ifndef BUFFER_H
-#define BUFFER_H
+#ifndef BUFFER
+#define BUFFER
 #include <cstring>   //perror
 #include <iostream>
 #include <unistd.h>  // write
@@ -7,7 +7,8 @@
 #include <vector> //readv
 #include <atomic>
 #include <assert.h>
-class Buffer {
+class Buffer
+{
 public:
     Buffer(int initBuffSize = 1024);
     ~Buffer() = default;
@@ -47,4 +48,4 @@ private:
     std::atomic<std::size_t> writePos_;
 };
 
-#endif //BUFFER_H
+#endif //BUFFER

@@ -13,16 +13,19 @@
 #include "sqlconnpool.hpp"
 #include "sqlconn.hpp"
 
-class HttpRequest {
+class HttpRequest
+{
 public:
-    enum PARSE_STATE {
+    enum PARSE_STATE
+    {
         REQUEST_LINE,
         HEADERS,
         BODY,
         FINISH,        
     };
 
-    enum HTTP_CODE {
+    enum HTTP_CODE
+    {
         NO_REQUEST = 0,
         GET_REQUEST,
         BAD_REQUEST,
@@ -74,6 +77,5 @@ private:
     static const std::unordered_map<std::string, int> DEFAULT_HTML_TAG;
     static int ConverHex(char ch);
 };
-
 
 #endif //HTTPREQUEST

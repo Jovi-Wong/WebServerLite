@@ -12,7 +12,8 @@
  * @brief wrap epoll API up
  */
 
-class Epoller {
+class Epoller
+{
 public:
     explicit Epoller(int maxEvent = 1024);
 

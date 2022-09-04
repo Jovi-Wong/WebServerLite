@@ -1,7 +1,8 @@
 #include <unistd.h>
 #include "webserverlite.hpp"
 
-int main() {
+int main()
+{
     WebServerLite server(
         1234,            // port
         3,               // trigMode
