@@ -198,7 +198,10 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd, bool isLogin
     
     if(!isLogin) flag = true;
     /* 查询用户及密码 */
-    snprintf(order, 256, "SELECT username, password FROM user WHERE username='%s' LIMIT 1", name.c_str());
+    snprintf(order,
+             256,
+             "SELECT username, password FROM user WHERE username='%s' LIMIT 1",
+             name.c_str());
     LOG_DEBUG("%s", order);
 
     if(mysql_query(sql, order))

@@ -104,12 +104,10 @@ void WebServerLite::Start()
             timeMS = timer_->GetNextTick();
         }
         int eventCnt = epoller_->Wait(timeMS);
-        printf("eventCnt = %i\n", eventCnt);
         for(int i = 0; i < eventCnt; i++)
         {
-            /* 处理事件 */
+            /* deal with event */
             int fd = epoller_->GetEventFd(i);
-            printf("fd = %i \n", fd);
             unsigned int events = epoller_->GetEvents(i);
             if(fd == listenFd_)
             {

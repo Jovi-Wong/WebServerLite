@@ -11,7 +11,7 @@ WebServerLite is a high-performance HTTP web server in C++14. Many functionaliti
 # Prerequisites
 * OS: ubuntu 22.04
 * Compiler: g++ 11.2.0
-* libraries: mysql-server mysql-client libmysqlclient-dev
+* libraries: mysql-server mysql-client libmysqlclient-dev libntirpc-dev
 
 ## Framework
 

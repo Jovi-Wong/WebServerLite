@@ -32,7 +32,7 @@ bin
 *.out
 *.app
 server
-server_
+server_test
 # Editor
 .vscode
 .clang
