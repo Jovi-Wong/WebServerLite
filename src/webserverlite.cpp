@@ -26,13 +26,16 @@ WebServerLite::WebServerLite(
 {
     srcDir_ = getcwd(nullptr, 256); // get current directory
     assert(srcDir_);
-    strncat(srcDir_, "/resources/", 16);
+    strncat(srcDir_, "/assets/", 16);
     HttpConn::userCount = 0;
     HttpConn::srcDir = srcDir_;
     SqlConnPool::Instance()->Init("localhost", sqlPort, sqlUser, sqlPwd, dbName, connPoolNum);
 
     InitEventMode_(trigMode);
-    if(!InitSocket_()) { isClose_ = true;}
+    if(!InitSocket_())
+    { 
+        isClose_ = true;
+    }
 
     if(openLog)
     {
@@ -108,21 +111,27 @@ void WebServerLite::Start()
             int fd = epoller_->GetEventFd(i);
             printf("fd = %i \n", fd);
             unsigned int events = epoller_->GetEvents(i);
-            if(fd == listenFd_) {
+            if(fd == listenFd_)
+            {
+                std::cout << "enter function DealListen_" << std::endl;
                 DealListen_();
             }
-            else if(events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
+            else if(events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) 
+            {
                 assert(users_.count(fd) > 0);
                 CloseConn_(&users_[fd]);
             }
-            else if(events & EPOLLIN) {
+            else if(events & EPOLLIN) 
+            {
                 assert(users_.count(fd) > 0);
                 DealRead_(&users_[fd]);
             }
-            else if(events & EPOLLOUT) {
+            else if(events & EPOLLOUT) 
+            {
                 assert(users_.count(fd) > 0);
                 DealWrite_(&users_[fd]);
-            } else {
+            } else 
+            {
                 LOG_ERROR("Unexpected event");
             }
         }
