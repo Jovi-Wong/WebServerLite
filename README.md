@@ -30,11 +30,13 @@ The diagram below shows the data flow from a request by a client to a response b
 
 ```mermaid
 graph TD;
-	req(I/O requests) --> thread(thread pool);
-	thread --> httpreq(HTTP requests);
+	req(I/O requests) -- Epoller --> WebServerLite;
+	WebServerLite --> threadp;
+	threadp(thread pool) --> httpreq(HTTP requests);
 	httpreq --> httprsp(HTTP responses);
-	httpreq --> db(mysql);
-	db --> httprsp;
+	httpreq -- SqlConn --> SqlConnPool;
+	SqlConnPool --> database;
+	database --> httprsp;
 ```
 
 

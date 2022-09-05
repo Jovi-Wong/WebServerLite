@@ -16,7 +16,9 @@ public:
         assert(threadCount > 0);
         for(size_t i = 0; i < threadCount; i++)
         {
-            std::thread([pool = pool_]
+            std::thread
+            (
+                [pool = pool_]
                 {
                     std::unique_lock<std::mutex> locker(pool->mtx);
                     while(true)
