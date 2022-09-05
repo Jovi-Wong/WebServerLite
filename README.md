@@ -104,5 +104,7 @@ Finally, we can run our HTTP web server by inputing command.
 ./server
 ```
 
+Open browser and see the home page.
 
+![homepage](./doc/homepage.png)
 
