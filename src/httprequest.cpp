@@ -5,7 +5,10 @@ const unordered_set<string> HttpRequest::DEFAULT_HTML
 {"/index", "/register", "/login", "/welcome", "/video", "/picture", };
 
 const unordered_map<string, int> HttpRequest::DEFAULT_HTML_TAG
-{{"/register.html", 0}, {"/login.html", 1}};
+{
+    {"/register.html", 0}, 
+    {"/login.html", 1}
+};
 
 void HttpRequest::Init()
 {
@@ -142,7 +145,6 @@ void HttpRequest::ParsePost_()
 void HttpRequest::ParseFromUrlencoded_()
 {
     if(body_.size() == 0) return;
-
     string key, value;
     int num = 0;
     int n = body_.size();
@@ -197,7 +199,7 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd, bool isLogin
     MYSQL_RES *res = nullptr;
     
     if(!isLogin) flag = true;
-    /* 查询用户及密码 */
+    /* request username and password */
     snprintf(order,
              256,
              "SELECT username, password FROM user WHERE username='%s' LIMIT 1",
@@ -215,7 +217,7 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd, bool isLogin
     {
         LOG_DEBUG("MYSQL ROW: %s %s", row[0], row[1]);
         string password(row[1]);
-        /* 注册行为 且 用户名未被使用*/
+        /* register with an invalid username*/
         if(isLogin)
         {
             if(pwd == password) 
@@ -225,7 +227,7 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd, bool isLogin
             else 
             {
                 flag = false;
-                LOG_DEBUG("pwd error!");
+                LOG_DEBUG("Password Error!");
             }
         } 
         else
@@ -236,7 +238,7 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd, bool isLogin
     }
     mysql_free_result(res);
 
-    /* 注册行为 且 用户名未被使用*/
+    /* register with a valid username */
     if(!isLogin && flag == true)
     {
         LOG_DEBUG("regirster!");
