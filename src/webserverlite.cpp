@@ -69,22 +69,22 @@ void WebServerLite::InitEventMode_(int trigMode)
     connEvent_ = EPOLLONESHOT | EPOLLRDHUP;
     switch (trigMode)
     {
-    case 0:
-        break;
-    case 1:
-        connEvent_ |= EPOLLET;
-        break;
-    case 2:
-        listenEvent_ |= EPOLLET;
-        break;
-    case 3:
-        listenEvent_ |= EPOLLET;
-        connEvent_ |= EPOLLET;
-        break;
-    default:
-        listenEvent_ |= EPOLLET;
-        connEvent_ |= EPOLLET;
-        break;
+        case 0:
+            break;
+        case 1:
+            connEvent_ |= EPOLLET;
+            break;
+        case 2:
+            listenEvent_ |= EPOLLET;
+            break;
+        case 3:
+            listenEvent_ |= EPOLLET;
+            connEvent_ |= EPOLLET;
+            break;
+        default:
+            listenEvent_ |= EPOLLET;
+            connEvent_ |= EPOLLET;
+            break;
     }
     HttpConn::isET = (connEvent_ & EPOLLET);
 }
@@ -127,7 +127,8 @@ void WebServerLite::Start()
             {
                 assert(users_.count(fd) > 0);
                 DealWrite_(&users_[fd]);
-            } else 
+            }
+            else 
             {
                 LOG_ERROR("Unexpected event");
             }
@@ -139,7 +140,8 @@ void WebServerLite::SendError_(int fd, const char*info)
 {
     assert(fd > 0);
     int ret = send(fd, info, strlen(info), 0);
-    if(ret < 0) {
+    if(ret < 0)
+    {
         LOG_WARN("send error to client[%d] error!", fd);
     }
     close(fd);
@@ -157,7 +159,8 @@ void WebServerLite::AddClient_(int fd, sockaddr_in addr)
 {
     assert(fd > 0);
     users_[fd].init(fd, addr);
-    if(timeoutMS_ > 0) {
+    if(timeoutMS_ > 0)
+    {
         timer_->add(fd, timeoutMS_, std::bind(&WebServerLite::CloseConn_, this, &users_[fd]));
     }
     epoller_->AddFd(fd, EPOLLIN | connEvent_);
@@ -200,7 +203,10 @@ void WebServerLite::DealWrite_(HttpConn* client)
 void WebServerLite::ExtentTime_(HttpConn* client)
 {
     assert(client);
-    if(timeoutMS_ > 0) { timer_->adjust(client->GetFd(), timeoutMS_); }
+    if(timeoutMS_ > 0)
+    {
+        timer_->adjust(client->GetFd(), timeoutMS_); 
+    }
 }
 
 void WebServerLite::OnRead_(HttpConn* client)
