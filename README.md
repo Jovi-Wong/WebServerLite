@@ -28,7 +28,14 @@ WebServerLite is a high-performance HTTP web server in C++14. Many functionaliti
 
 The diagram below shows the data flow from a request by a client to a response by the WebServerLite.
 
-
+```mermaid
+graph TD;
+	req(I/O requests) --> thread(thread pool);
+	thread --> httpreq(HTTP requests);
+	httpreq --> httprsp(HTTP responses);
+	httpreq --> db(mysql);
+	db --> httprsp;
+```
 
 
 
