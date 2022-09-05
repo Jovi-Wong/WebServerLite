@@ -58,6 +58,10 @@ through terminal in your root path of WebServerLite. And you can also use option
  -V|--version             Display program version.
 ```
 
+The performance of WebServerLite in our test can be shown after you input the above commands and wait few seconds.
+
+![benchmark_result](./doc/benchmark_result.png)
+
 
 
 ## Installation
