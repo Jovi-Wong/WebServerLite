@@ -180,8 +180,7 @@ void WebServerLite::DealListen_()
     do
     {
         int fd = accept(listenFd_, (struct sockaddr *)&addr, &len);
-        if (fd <= 0)
-            return;
+        if (fd <= 0) return;
         else if (HttpConn::userCount >= MAX_FD)
         {
             SendError_(fd, "Server busy!");

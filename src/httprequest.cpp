@@ -69,7 +69,7 @@ void HttpRequest::ParsePath_()
     }
     else
     {
-        for(auto &item: DEFAULT_HTML)
+        for(auto &item: DEFAULT_HTML) // linear search for returning page
         {
             if(item == path_)
             {

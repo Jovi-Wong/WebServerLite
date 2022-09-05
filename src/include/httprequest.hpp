@@ -51,12 +51,6 @@ public:
 
     bool IsKeepAlive() const;
 
-    /* 
-    todo 
-    void HttpConn::ParseFormData() {}
-    void HttpConn::ParseJson() {}
-    */
-
 private:
     bool ParseRequestLine_(const std::string& line);
     void ParseHeader_(const std::string& line);
@@ -66,7 +60,9 @@ private:
     void ParsePost_();
     void ParseFromUrlencoded_();
 
-    static bool UserVerify(const std::string& name, const std::string& pwd, bool isLogin);
+    static bool UserVerify(const std::string& name,
+                           const std::string& pwd,
+                           bool isLogin);
 
     PARSE_STATE state_;
     std::string method_, path_, version_, body_;
