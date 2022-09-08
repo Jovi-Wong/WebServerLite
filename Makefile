@@ -8,7 +8,7 @@ TEST = benchmark/benchmark.cpp
 LIBS = -pthread -lmysqlclient
 TRASH = server server_test log testlog* testThreadpool
 
-all: $(OBJS) $(MAIN)
+release: $(OBJS) $(MAIN)
 	$(CC) -o server $(FLAGS) $(OBJS) $(MAIN) $(LIBS)
 
 test: $(OBJS) $(TEST)
