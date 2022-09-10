@@ -35,7 +35,7 @@ public:
     const char* GetIP() const;
     
     sockaddr_in GetAddr() const;
-    
+
     bool process();
 
     int ToWriteBytes()
