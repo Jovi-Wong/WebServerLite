@@ -25,7 +25,7 @@ public:
         bool OptLinger,
         int sqlPort,
         const char* sqlUser,
-        const  char* sqlPwd,
+        const char* sqlPwd,
         const char* dbName,
         int connPoolNum,
         int threadNum,

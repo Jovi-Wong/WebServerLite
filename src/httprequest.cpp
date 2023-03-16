@@ -1,4 +1,5 @@
 #include "httprequest.hpp"
+
 using namespace std;
 
 const unordered_set<string> HttpRequest::DEFAULT_HTML

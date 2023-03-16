@@ -33,6 +33,7 @@ bin
 *.app
 server
 server_test
+
 # Editor
 .vscode
 .clang

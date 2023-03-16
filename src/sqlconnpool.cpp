@@ -1,4 +1,5 @@
 #include "sqlconnpool.hpp"
+
 using namespace std;
 
 SqlConnPool::SqlConnPool()

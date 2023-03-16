@@ -40,7 +40,7 @@ private:
     int MAX_CONN_;
     int useCount_;
     int freeCount_;
-    std::queue<MYSQL *> connQue_;
+    std::queue<MYSQL*> connQue_;
     std::mutex mtx_;
     sem_t semId_;
 };
