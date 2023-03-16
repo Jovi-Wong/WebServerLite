@@ -64,7 +64,7 @@ private:
     bool isClose_;
     int listenFd_;
     char* srcDir_;
-    
+
     unsigned int listenEvent_;
     unsigned int connEvent_;
    

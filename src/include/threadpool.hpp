@@ -30,7 +30,7 @@ public:
                             locker.unlock();
                             task();
                             locker.lock();
-                        } 
+                        }
                         else if(pool->isClosed) break;
                         else pool->cond.wait(locker);
                     }

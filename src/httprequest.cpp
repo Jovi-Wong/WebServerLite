@@ -44,7 +44,7 @@ bool HttpRequest::parse(Buffer& buff)
             case REQUEST_LINE:
                 if(!ParseRequestLine_(line)) return false;
                 ParsePath_();
-                break;    
+                break;
             case HEADERS:
                 ParseHeader_(line);
                 if(buff.ReadableBytes() <= 2) state_ = FINISH;

@@ -16,7 +16,7 @@ bool Epoller::AddFd(int fd, unsigned int events)
     epoll_event ev = {0};
     ev.data.fd = fd;
     ev.events = events;
-    return 0 == epoll_ctl(epollFd_, EPOLL_CTL_ADD, fd, &ev);
+    return epoll_ctl(epollFd_, EPOLL_CTL_ADD, fd, &ev) == 0;
 }
 
 bool Epoller::ModFd(int fd, unsigned int events) 
@@ -25,14 +25,14 @@ bool Epoller::ModFd(int fd, unsigned int events)
     epoll_event ev = {0};
     ev.data.fd = fd;
     ev.events = events;
-    return 0 == epoll_ctl(epollFd_, EPOLL_CTL_MOD, fd, &ev);
+    return epoll_ctl(epollFd_, EPOLL_CTL_MOD, fd, &ev) == 0;
 }
 
 bool Epoller::DelFd(int fd)
 {
     if(fd < 0) return false;
     epoll_event ev = {0};
-    return 0 == epoll_ctl(epollFd_, EPOLL_CTL_DEL, fd, &ev);
+    return epoll_ctl(epollFd_, EPOLL_CTL_DEL, fd, &ev) == 0;
 }
 
 int Epoller::Wait(int timeoutMs)
